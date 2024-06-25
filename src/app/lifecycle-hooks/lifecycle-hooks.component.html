@@ -1,0 +1,11 @@
+<p>lifecycle-hooks works!</p>
+<button (click)="updateValue()">Update Value</button>
+<app-test-changes [inputValue]="inputValue" [user]="user" *ngIf="displayComponent">
+  <div style="background-color: yellow;">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  </div>
+  <h3>{{dataFromParent}}</h3>
+</app-test-changes>
+<button (click)="sendDataToChild()">Generate String</button>
+<button (click)="changeUserName()">Update User Name</button>
+<button (click)="toggleComponent()">Toggle Component</button>

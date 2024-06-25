@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="parent">
+    <h2>Data in Parent Component</h2>
+    <pre appDecoratorsDirective>{{courses | json}}</pre>
+  </div>
+  <div class="child">
+    <label for="colorPicker">Select Color For Button</label>
+    <input #colorInput type="color" id="colorPicker">
+    <button type="button" #btnIncr (click)="incrementChildCounter()" [style.backgroundColor]="selectedColor">Increment Counter</button>
+    @defer () {
+      <app-decorators-child *ngIf="courses.length > 0" [courses]="courses" (itemDeleted)="deleteCourse($event)">
+        <section>
+          <h3>Heading</h3>
+          <p #showPara>Paragraph</p>
+        </section>
+      </app-decorators-child>
+    }
+    @error {
+      <h3>Something went wrong...</h3>
+    }
+  </div>
+</div>

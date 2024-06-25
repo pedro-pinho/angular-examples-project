@@ -1,0 +1,24 @@
+<h1>Understanding Async Pipe</h1>
+<h3>Time from Observable: {{ $observableTime | async }}</h3>
+<h3>Array from Observable:</h3>
+<span *ngFor="let item of $observableArray | async">{{ item }}</span>
+<h3>Subscribing to a Promise from async pipe:</h3>
+<span>{{$promise | async}}</span>
+<div>
+  <h3>Fetching Data from JSON</h3>
+  <ng-container *ngIf="$jsonData | async as data; else loading">
+    <table>
+      <thead>
+        <tr><th>Categories</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of data">
+          <td>{{category.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
+</div>

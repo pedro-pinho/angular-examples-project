@@ -1,0 +1,93 @@
+<h1 style="text-align: center;">{{title | uppercase}}</h1>
+<h3 style="text-align: center;">{{startDate | date: 'dd MMMM yyyy' | lowercase}}</h3>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>State</th>
+        <th>Salary</th>
+        <th>Dob</th>
+        <th>First 2 Dependents</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{employee.name | titlecase}}</td>
+        <td>{{employee.state | slice: 0:3}}</td>
+        <td>{{employee.salary | currency: 'USD'}}</td>
+        <td>{{employee.dob | date: 'dd MMMM yyyy'}}</td>
+        <td>{{employee.nameOfDependents | slice: 0:2}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h3 style="text-align: center;">Products</h3>
+<div class="product-grid">
+  <div class="product-card" *ngFor="let product of products | slice: startIndex: endIndex">
+    <h4>{{product.name}}</h4>
+    <img [src]="product.imageUrl" alt="product image" width="100" height="100">
+    <p>Code: {{product.code | number: '3.1-2' }}</p> <!-- 3 digits before the decimal, 1 digit after decimal, 2 maximum length -->
+  </div>
+  <div class="btn-container">
+    <button type="button" (click)="previousPage()" [disabled]="startIndex === 0">Previous</button>
+    <button type="button" (click)="nextPage()" [disabled]="endIndex >= products.length">Next</button>
+  </div>
+</div>
+<div class="container">
+  <h2>Weight Converter</h2>
+  <div class="input-group">
+    <label for="weigthInPounds">Enter weight in pounds</label>
+    <input type="number" id="weigthInPounds" [(ngModel)]="weightInPounds">
+  </div>
+  <button (click)="convertWeight()">Convert</button>
+  <br />
+  <p>Weight in Kilograms: {{weightInKilograms | number: '1.2-2'}}{{' ' | appendText: 'kg'}}</p>
+</div>
+@defer (on viewport; when showData) {
+  <!-- This will trigger if either condition is met, meaning on viewport OR when showData -->
+  <!-- This operation is one time only: if showData goes back to false and this element is not on the viewport anymore, it will still render -->
+  <!-- For conditional rendering, use @if or *ngIf -->
+  <div class="container">
+    <table cellSpacing="0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Major</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{student.name}}</td>
+          <td>{{student.age}}</td>
+          <td>{{student.gender}}</td>
+          <td>{{student.major}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" (click)="toggleJson()">JSON Format</button>
+    <div *ngIf="showJson">
+      <h2>JSON Format</h2>
+      <pre>{{students | json | titlecase}}</pre>
+    </div>
+  </div>
+} @placeholder {
+  <h3>Loading...</h3>
+}
+
+@defer (on viewport; prefetch on idle) {
+  <!-- Other options for the defer: on interaction, on hover, on immediate, on timer -->
+  <div class="container">
+    <h2>Given array: <span>{{numberArray}}</span></h2>
+    <h3>Sorted array: {{numberArray | sortNumbers: 'desc'}}</h3>
+  </div>
+}
+@placeholder () {
+  <h3>Placeholder...</h3>
+}
+@loading (after 1s; minimum 5s) {
+  <!-- This will show for 5 seconds if the loading takes more than 1 second -->
+  <h3>Loading...</h3>
+}

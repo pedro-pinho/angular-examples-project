@@ -1,0 +1,297 @@
+<div class="container">
+  <h1>Reactive Forms</h1>
+  <div class="container">
+    <h2>Simple form control</h2>
+    <div class="input-group">
+      <input
+        type="text"
+        [formControl]="usernameControl"
+        placeholder="Enter username"
+      />
+      <button type="submit" (click)="showValue()">Show</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Form group</h2>
+    <form [formGroup]="usersForm" (ngSubmit)="onSubmitUsers()">
+      <div formArrayName="users">
+        <div
+          class="user-row"
+          *ngFor="let user of users.controls; let i = index"
+        >
+          <div [formGroupName]="i">
+            <div class="user-row-header">
+              <span>User {{ i + 1 }}</span>
+              <button type="button" (click)="removeUser(i)">Remove</button>
+            </div>
+            <input
+              type="text"
+              formControlName="username"
+              placeholder="Enter username"
+            />
+            <input
+              type="text"
+              formControlName="email"
+              placeholder="Enter email"
+            />
+            <input
+              type="number"
+              formControlName="age"
+              placeholder="Enter age"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" (click)="addUser()">Add User</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <h2>Form builder</h2>
+    <form [formGroup]="employeesForm" (ngSubmit)="onSubmitEmployees()">
+      <div formArrayName="employees">
+        <div
+          class="employee-row"
+          *ngFor="let employee of employees.controls; let i = index"
+        >
+          <div [formGroupName]="i">
+            <div class="employee-row-header">
+              <span>User {{ i + 1 }}</span>
+              <button type="button" (click)="removeEmployee(i)">Remove</button>
+            </div>
+            <input
+              type="text"
+              formControlName="name"
+              placeholder="Enter name"
+            />
+            <input
+              type="text"
+              formControlName="email"
+              placeholder="Enter email"
+            />
+            <input
+              type="number"
+              formControlName="age"
+              placeholder="Enter age"
+            />
+          </div>
+        </div>
+        <div class="button-group">
+          <button type="button" (click)="addEmployee()">Add Employee</button>
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <h2>Validating Form Controls</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+      <div>
+        <input type="text" formControlName="email" placeholder="Enter email" />
+        <span
+          class="form-label"
+          *ngIf="emailControl.touched && emailControl.errors?.['required']"
+          >*Required</span
+        >
+      </div>
+      <div>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Enter password"
+        />
+        <span
+          class="form-label"
+          *ngIf="passwordControl.touched && passwordControl.errors?.['required']"
+          >*Required</span
+        >
+      </div>
+      <div class="button-group">
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <h1>Multi Step Form</h1>
+    <form [formGroup]="myForm" (ngSubmit)="formSubmit()" *ngIf="!isSubmitted">
+      <ng-container *ngIf="step == 1" formGroupName="userDetails">
+        <h4>User Details</h4>
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Full Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputName"
+            formControlName="fname"
+          />
+          <span
+            class="form-label text-danger"
+            *ngIf="
+              userDetails.get('fname')?.invalid &&
+              userDetails.get('fname')?.touched
+            "
+            >*Please enter your full name</span
+          >
+        </div>
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            formControlName="email"
+          />
+          <span
+            class="form-label text-danger"
+            *ngIf="
+              userDetails.get('email')?.invalid &&
+              userDetails.get('email')?.touched
+            "
+            >*Please enter your email address</span
+          >
+        </div>
+        <div class="mb-3">
+          <label for="inputPassword" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword"
+            formControlName="password"
+          />
+          <span
+            class="form-label text-danger"
+            *ngIf="
+              userDetails.get('password')?.invalid &&
+              userDetails.get('password')?.touched
+            "
+            >*Please enter your password</span
+          >
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="step == 2" formGroupName="additionalDetails">
+        <h4>Additional Details</h4>
+        <div class="mb-3">
+          <label for="inputMobile" class="form-label">Phone Number</label>
+          <input
+            type="number"
+            class="form-control"
+            id="inputMobile"
+            placeholder="+1"
+            formControlName="mobile"
+          />
+          <span
+            class="form-label text-danger"
+            *ngIf="
+              additionalDetails.get('mobile')?.invalid &&
+              additionalDetails.get('mobile')?.touched
+            "
+            >*Please enter 10-digit mobile number</span
+          >
+        </div>
+        <div class="mb-3">
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Enter Address"
+              id="floatingTextArea"
+              formControlName="address"
+            ></textarea>
+            <label for="floatingTextArea" class="form-label"
+              >Street Address</label
+            >
+            <span
+              class="form-label text-danger"
+              *ngIf="
+                additionalDetails.get('address')?.invalid &&
+                additionalDetails.get('address')?.touched
+              "
+              >*Please enter your address</span
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputCountry" class="form-label">Country</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputCountry"
+            formControlName="country"
+          />
+          <span
+            class="form-label text-danger"
+            *ngIf="
+              additionalDetails.get('country')?.invalid &&
+              additionalDetails.get('country')?.touched
+            "
+            >*Please specify your country</span
+          >
+        </div>
+        <div class="mb-3">
+          <label for="inputGender" class="form-label">Gender</label>
+          <select
+            name="inputGender"
+            id="inputGender"
+            class="form-control"
+            formControlName="gender"
+          >
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="">Prefer not to answer</option>
+          </select>
+          <span
+            class="form-label text-danger"
+            *ngIf="
+              additionalDetails.get('gender')?.invalid &&
+              additionalDetails.get('gender')?.touched
+            "
+            >*Please select one option</span
+          >
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="step == 3" formGroupName="feedback">
+        <h4>Feedback/Comment</h4>
+        <div class="mb-3">
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Leave a comment here"
+              id="floatingTextArea"
+              style="height: 100px"
+              formControlName="comments"
+            ></textarea>
+            <label for="floatingTextArea" class="form-label">Comments</label>
+          </div>
+        </div>
+      </ng-container>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="btnPrevious()"
+        *ngIf="step != 1"
+      >
+        Previous
+      </button>
+      <button type="button" class="btn btn-primary mx-2" (click)="btnNext()">
+        Next
+      </button>
+      <button type="submit" class="btn btn-success" *ngIf="step == 3">
+        Submit
+      </button>
+    </form>
+
+    <ng-container *ngIf="isSubmitted">
+      <h2 class="text-success mx-4">Form Submitted Successfully</h2>
+    </ng-container>
+  </div>
+</div>

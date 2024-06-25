@@ -1,0 +1,14 @@
+<div class="container">
+  <h2 class="mt-3 mb-3">Edit Product</h2>
+  <form>
+    <div class="form-group">
+      <label for="nameInput">Name</label>
+      <input type="email" class="form-control" id="nameInput" [(ngModel)]="productForm.name" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="priceInput">Price</label>
+      <input type="number" class="form-control" id="priceInput" [(ngModel)]="productForm.price" [ngModelOptions]="{standalone: true}">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3" (click)="editProduct()">Submit</button>
+  </form>
+</div>

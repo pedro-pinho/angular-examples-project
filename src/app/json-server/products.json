@@ -1,0 +1,59 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "iPhone 15",
+      "price": 1500
+    },
+    {
+      "id": "2",
+      "name": "Samsung Galaxy S20",
+      "price": 1200
+    },
+    {
+      "id": "3",
+      "name": "Google Pixel 5",
+      "price": 900
+    },
+    {
+      "id": "4",
+      "name": "OnePlus 8",
+      "price": 800
+    },
+    {
+      "id": "5",
+      "name": "Xiaomi Mi 10",
+      "price": 700
+    },
+    {
+      "id": "6",
+      "name": "Huawei P40",
+      "price": 600
+    },
+    {
+      "id": "7",
+      "name": "Oppo Find X2",
+      "price": 500
+    },
+    {
+      "id": "8",
+      "name": "Vivo X50",
+      "price": 400
+    },
+    {
+      "id": "9",
+      "name": "Realme X3",
+      "price": 300
+    },
+    {
+      "id": "10",
+      "name": "Nokia 8.3",
+      "price": 200
+    },
+    {
+      "id": "12",
+      "name": "Macbook Pro",
+      "price": 2200
+    }
+  ]
+}

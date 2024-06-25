@@ -1,0 +1,28 @@
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button class="btn btn-primary" (click)="getData()">Get Data</button>
+  <button class="btn btn-secondary" (click)="postData()">Post Data</button>
+  <button class="btn btn-success" (click)="putData()">Put Data</button>
+  <button class="btn btn-danger" (click)="deleteData()">Delete Data</button>
+</div>
+
+<ng-container *ngIf="isDataLoaded">
+  <h3>Posts Data:</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="($responseData | async) as data">
+      <tr *ngFor="let post of data">
+        <th scope="row">{{post.id}}</th>
+        <td>{{post.title}}</td>
+        <td>{{post.body}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Users Data:</h3>
+  <pre>{{responseData | json}}</pre>
+</ng-container>

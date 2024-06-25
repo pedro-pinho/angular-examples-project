@@ -1,0 +1,21 @@
+<h1>RxJS Operators!</h1>
+<div *ngIf="isLoading; else messageContent">
+  <div class="loading-spinner">
+    Loading...
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+<ng-template #messageContent>
+  <div>
+    <p>{{message}}</p>
+  </div>
+</ng-template>
+<div>
+  <p>Cursor Position X: {{ ($cursorPosition | async)?.x }}</p>
+  <p>Cursor Position Y: {{ ($cursorPosition | async)?.y }}</p>
+</div>

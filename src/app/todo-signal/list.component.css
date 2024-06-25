@@ -1,0 +1,99 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    111.4deg,
+    rgba(7, 7, 9, 1) 6.5%,
+    rgba(27, 24, 113, 1) 93.2%
+  );
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-app {
+  width: 540px;
+  min-height: 55vh;
+  background-color: #fff;
+  padding: 40px 30px 70px;
+  border-radius: 10px;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-title {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.app-title h2,
+.app-title i {
+  color: #002765;
+  font-size: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  background-color: #edeef0;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+input {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  padding: 12px;
+  font-size: 17px;
+  padding-left: 20px;
+  border-radius: 30px 0 0 30px;
+  color: #1f2022;
+}
+
+.addBtn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 15px 50px;
+  border-radius: 0 30px 30px 0;
+  background-color: #002765;
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.25s ease;
+}
+.removeBtn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 5px 16px;
+  border-radius: 20px 30px 30px 0;
+  background-color: #fc412c;
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  filter: brightness(0.8);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item {
+  display: flex;
+  font-size: 17px;
+  align-items: flex-start;
+  padding: 3px;
+  margin: 5px;
+  user-select: none;
+  color: #1f2022;
+  position: relative;
+  justify-content: space-between;
+}

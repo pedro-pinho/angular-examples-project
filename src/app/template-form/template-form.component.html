@@ -1,0 +1,18 @@
+<div class="form-container">
+  <h1>Submit Form</h1>
+  <form #myForm="ngForm" (ngSubmit)="formSubmit(myForm)">
+    <div class="input-box">
+      <label for="name">Name</label>
+      <input type="text" name="name" ngModel required #name="ngModel">
+    </div>
+    <div class="input-box">
+      <label for="email">Email</label>
+      <input type="text" name="email" ngModel required #email="ngModel">
+    </div>
+    <div class="input-box">
+      <button type="submit">Submit</button>
+      <button type="button" (click)="resetValues(myForm)">Reset</button>
+      <button type="button" (click)="setDefaultValues(myForm)">Default</button>
+    </div>
+  </form>
+</div>

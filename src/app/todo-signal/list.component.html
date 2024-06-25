@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="todo-app">
+      <div class="app-title">
+          <h2>To-do app</h2>
+          <i class="fa fa-link" aria-hidden="true"></i>
+      </div>
+      <div class="row">
+          <input type="text" placeholder="Add a to-do item" [(ngModel)]="todoName" #todo />
+          <button type="button" class="addBtn" (click)="addTodo(todo)">Add Task</button>
+      </div>
+      <ul>
+          <li class="todo-item" *ngFor="let item of todos(); let i = index">
+              {{item}}
+              <button type="button" class="removeBtn" (click)="removeTodo(i)">Remove</button>
+          </li>
+      </ul>
+  </div>
+</div>
